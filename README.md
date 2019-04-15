@@ -5,7 +5,7 @@
 let azrequests = require('azrequests')
 new azrequests(url,param,type).handlData(method,callback(res,err))
 ```
-###API
+###api
 | 变量名 | 描述 | 默认值 |
 | :------| ------: | :------: |
 | url | 接口地址 | String ：例如“https://api.apiopen.top/recommendPoetry” |
