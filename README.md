@@ -3,7 +3,14 @@
 
 [![axios](https://img.shields.io/badge/axios-%5E0.18.0-green.svg)](https://www.npmjs.com/package/azrequests)
 
-A simple request plug-in
+A simple request plug-in ,Only suitable for data return format is
+```javascript
+{
+    code:0,
+    msg:"success",
+    data:{}
+}
+```
 
 ## Installation
 ```shell
@@ -19,7 +26,7 @@ Vue.prototype.$http = azrequests;
 ## Usage in non-components
 ```javascript
 let azrequests = require('azrequests')
-new azrequests(url,param,type).handlData(method,callback(res,err))
+azrequests(url,param,type).handlData(method,callback(res,err))
 ```
 
 ## Example
@@ -28,7 +35,7 @@ Performing a `POST` request
 
 ```js
 // Make a request for news with a given type
-new azrequests('http://v.juhe.cn/toutiao/index', {
+azrequests('http://v.juhe.cn/toutiao/index', {
     type: 'shehui'
 }).handlData('post', (res, err) => {
     console.log('res: ', res);
@@ -40,7 +47,7 @@ Performing a `GET` request
 
 ```js
 // Make a request for news with a given type
-new azrequests('http://v.juhe.cn/toutiao/index', {
+azrequests('http://v.juhe.cn/toutiao/index', {
     type: 'shehui'
 }).handlData('get', (res, err) => {
     console.log('res: ', res);

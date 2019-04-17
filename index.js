@@ -71,4 +71,8 @@ class Request {
     }
 }
 
-module.exports = Request
+function init(url, param, type) {
+    return new Request(url, param, type)
+}
+
+module.exports = init
