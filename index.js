@@ -35,7 +35,7 @@ class Request {
                     return false;
                 }
             }
-        }).catch(err => {
+        }).catch(error => {
             if (this.resData) {
                 err(this.resData.data.code, this.resData.data.msg)
             } else {
