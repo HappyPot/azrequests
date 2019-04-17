@@ -7,6 +7,7 @@ class Request {
         this.type = type
         this.resData = {}
     }
+    // post请求
     post(success, err) {
         if (this.type == 'formData') {
             var $param = new FormData()
@@ -43,6 +44,7 @@ class Request {
             }
         })
     }
+    // get请求
     get(success, err) {
         axios({
             method: "get",
@@ -54,6 +56,7 @@ class Request {
             err(error)
         })
     }
+    // 统一处理请求中的返回值
     handlData(method, callback) {
         if (method.toLowerCase() == 'post') {
             this.post((res) => {
@@ -70,7 +73,7 @@ class Request {
         }
     }
 }
-
+// 入口函数
 function init(url, param, type) {
     return new Request(url, param, type)
 }

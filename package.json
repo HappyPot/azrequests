@@ -1,12 +1,19 @@
 {
   "name": "azrequests",
-  "version": "1.0.6",
+  "version": "1.0.22",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "homepage": "https://github.com/HappyPot/azrequests",
+  "keywords": [
+    "AZ",
+    "azrequests",
+    "http",
+    "api",
+    "restful"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {},
