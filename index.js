@@ -29,7 +29,7 @@ class Request {
                 this.flag = true
                 success(res)
             } else {
-                if (flag) {
+                if (this.flag) {
                     err(res.data.msg)
                     this.flag = false
                     return false;
