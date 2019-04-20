@@ -26,7 +26,7 @@ Vue.prototype.$http = azrequests;
 ## Usage in non-components
 ```javascript
 let azrequests = require('azrequests')
-azrequests(url,param,type).handlData(method,callback(res,err))
+azrequests(url,param,type,headers).handlData(method,callback(res,err))
 ```
 
 ## Example
@@ -57,10 +57,11 @@ azrequests('http://v.juhe.cn/toutiao/index', {
 ###API
 | 变量名 | 描述 | 默认值 |
 | :------| ------: | :------: |
-| url | 接口地址 | String ：eg：“https://api.apiopen.top/recommendPoetry” |
-| param | 请求参数 | String or Object |
-| type | 数据类型 | "formData" default：‘json’ |
-| method | 请求方式 | ‘get’or‘post’ |
+| url | 接口地址 | 必选 String ：eg：“https://api.apiopen.top/recommendPoetry” |
+| param | 请求参数 | 必选 String or Object |
+| type | 数据类型 | 可选 "formData" default：‘json’ |
+| headers | 请求头 | 可选 |
+| method | 请求方式 | 必选 ‘get’or‘post’ |
 | callback | 回调函数 | res返回值，err错误信息 |
 ## License
 MIT
