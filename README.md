@@ -6,8 +6,8 @@
 A simple request plug-in ,Only suitable for data return format is
 ```javascript
 {
-    code:0,
-    msg:"success",
+    code:"success",
+    msg:null,
     data:{}
 }
 ```

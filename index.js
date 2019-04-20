@@ -1,11 +1,12 @@
 let axios = require('axios')
 class Request {
-    constructor(url, param, type = "JSON") {
+    constructor(url, param, type = "JSON", headers = null) {
         this.url = url
         this.param = param
         this.flag = true
         this.type = type
         this.resData = {}
+        this.headers = headers
     }
     // post请求
     post(success, err) {
@@ -20,13 +21,17 @@ class Request {
             }
             this.param = $param
         }
-        axios({
+        let postParam = {
             method: "post",
             url: this.url,
-            data: this.param != null ? this.param : ''
-        }).then(res => {
+            data: this.param != null ? this.param : '',
+        }
+        if (this.headers) {
+            postParam['headers'] = this.headers
+        }
+        axios(postParam).then(res => {
             this.resData = res
-            if (res.data.code > 0) {
+            if (res.data.code == 'success') {
                 this.flag = true
                 success(res)
             } else {
@@ -37,6 +42,7 @@ class Request {
                 }
             }
         }).catch(error => {
+            if (error) throw error
             if (this.resData) {
                 err(this.resData.data.code, this.resData.data.msg)
             } else {
@@ -74,8 +80,8 @@ class Request {
     }
 }
 // 入口函数
-function init(url, param, type) {
-    return new Request(url, param, type)
+function init(url, param, type, headers) {
+    return new Request(url, param, type, headers)
 }
 
 module.exports = init
