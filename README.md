@@ -22,6 +22,8 @@ npm i azrequests -S
 ```javascript
 import azrequests from 'azrequests';
 Vue.prototype.$http = azrequests;
+
+this.$http(url,param,type,headers).handlData(method,callback(res,err))
 ```
 ## Usage in non-components
 ```javascript
