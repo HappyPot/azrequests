@@ -9,9 +9,8 @@ class Request {
         this.headers = headers
         this.condition = condition
     }
-    // post请求
-    post(success, err) {
-        if (this.type == 'formData') {
+    processParame(type) {
+        if (type == 'formData') {
             var $param = new FormData()
             for (let key in this.param) {
                 if (Object.prototype.toString.call(this.param[key]) === '[object Object]') {
@@ -22,6 +21,10 @@ class Request {
             }
             this.param = $param
         }
+    }
+    // post请求
+    post(success, err) {
+        this.processParame(this.type)
         let postParam = {
             method: "post",
             url: this.url,
@@ -53,11 +56,16 @@ class Request {
     }
     // get请求
     get(success, err) {
-        axios({
-            method: "get",
+        this.processParame(this.type)
+        let postParam = {
+            method: "post",
             url: this.url,
-            data: this.param != null ? this.param : ''
-        }).then(res => {
+            data: this.param != null ? this.param : '',
+        }
+        if (this.headers) {
+            postParam['headers'] = this.headers
+        }
+        axios(postParam).then(res => {
             success(res);
         }).catch(error => {
             err(error)
