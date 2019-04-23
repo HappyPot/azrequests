@@ -2,7 +2,7 @@
 # azrequests
 
 [![axios](https://img.shields.io/badge/axios-%5E0.18.0-green.svg)](https://www.npmjs.com/package/azrequests)
-
+#### if you have any question,you can visit my github site and submit issue  ,you are welcome
 A simple request plug-in ,Only suitable for data return format is
 ```javascript
 {
