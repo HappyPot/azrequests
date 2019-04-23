@@ -30,12 +30,12 @@ npm i azrequests -S
 import azrequests from 'azrequests';
 Vue.prototype.$http = azrequests;
 
-this.$http(url,param,type,headers).handlData(method,callback(res,err))
+this.$http(url,param,type,condition,headers).handlData(method,callback(res,err))
 ```
 ## Usage in non-components
 ```javascript
 let azrequests = require('azrequests')
-azrequests(url,param,type,headers).handlData(method,callback(res,err))
+azrequests(url,param,type,condition,headers).handlData(method,callback(res,err))
 ```
 
 ## Example

@@ -1,6 +1,6 @@
 let axios = require('axios')
 class Request {
-    constructor(url, param, type = "JSON", headers = null, condition = "success") {
+    constructor(url, param, type = "JSON", condition = "success", headers = null) {
         this.url = url
         this.param = param
         this.flag = true
@@ -81,8 +81,8 @@ class Request {
     }
 }
 // 入口函数
-function init(url, param, type, headers) {
-    return new Request(url, param, type, headers)
+function init(url, param, type, condition, headers) {
+    return new Request(url, param, type, condition, headers)
 }
 
 module.exports = init
