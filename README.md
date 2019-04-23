@@ -10,6 +10,13 @@ A simple request plug-in ,Only suitable for data return format is
     msg:null,
     data:{}
 }
+or
+{
+    code:200,
+    msg:"success",
+    data:{}
+}
+etc
 ```
 
 ## Installation
@@ -63,6 +70,7 @@ azrequests('http://v.juhe.cn/toutiao/index', {
 | param | 请求参数 | 必选 String or Object |
 | type | 数据类型 | 可选 "formData" default：‘json’ |
 | headers | 请求头 | 可选 |
+| condition | 成功的判断条件 | 可选 默认："success" eg:condition = 200|
 | method | 请求方式 | 必选 ‘get’or‘post’ |
 | callback | 回调函数 | res返回值，err错误信息 |
 ## License

@@ -1,12 +1,13 @@
 let axios = require('axios')
 class Request {
-    constructor(url, param, type = "JSON", headers = null) {
+    constructor(url, param, type = "JSON", headers = null, condition = "success") {
         this.url = url
         this.param = param
         this.flag = true
         this.type = type
         this.resData = {}
         this.headers = headers
+        this.condition = condition
     }
     // post请求
     post(success, err) {
@@ -31,7 +32,7 @@ class Request {
         }
         axios(postParam).then(res => {
             this.resData = res
-            if (res.data.code == 'success') {
+            if (res.data.code == this.condition) {
                 this.flag = true
                 success(res.data.data, null)
             } else {
