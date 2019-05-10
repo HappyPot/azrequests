@@ -30,12 +30,12 @@ npm i azrequests -S
 import azrequests from 'azrequests';
 Vue.prototype.$http = azrequests;
 
-this.$http(url,param,type,condition,headers).handlData(method,callback(res,err))
+this.$http(url,param,type,condition,headers).handlData(callback(res,err),method)
 ```
 ## Usage in non-components
 ```javascript
 let azrequests = require('azrequests')
-azrequests(url,param,type,condition,headers).handlData(method,callback(res,err))
+azrequests(url,param,type,condition,headers).handlData(callback(res,err)，method)
 ```
 
 ## Example
@@ -46,9 +46,9 @@ Performing a `POST` request
 // Make a request for news with a given type
 azrequests('http://v.juhe.cn/toutiao/index', {
     type: 'shehui'
-}).handlData('post', (res, err) => {
+}).handlData((res, err) => {
     console.log('res: ', res);
-})
+},'post')
 
 ```
 
@@ -58,9 +58,9 @@ Performing a `GET` request
 // Make a request for news with a given type
 azrequests('http://v.juhe.cn/toutiao/index', {
     type: 'shehui'
-}).handlData('get', (res, err) => {
+}).handlData((res, err) => {
     console.log('res: ', res);
-})
+},'get')
 ```
 
 ###API
@@ -71,7 +71,7 @@ azrequests('http://v.juhe.cn/toutiao/index', {
 | type | 数据类型 | 可选 "formData" default：‘json’ |
 | headers | 请求头 | 可选 |
 | condition | 成功的判断条件 | 可选 默认："success" eg:condition = 200|
-| method | 请求方式 | 必选 ‘get’or‘post’ |
+| method | 请求方式 | 必选 默认值：'post' ‘get’or‘post’ |
 | callback | 回调函数 | res返回值，err错误信息 |
 ## License
 MIT

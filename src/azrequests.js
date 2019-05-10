@@ -72,7 +72,7 @@ class Request {
         })
     }
     // 统一处理请求中的返回值
-    handlData(method, callback) {
+    handlData(callback, method = 'post') {
         if (method.toLowerCase() == 'post') {
             this.post((res) => {
                 callback && callback(res)
