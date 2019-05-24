@@ -1,13 +1,19 @@
 let axios = require('axios')
+url, param, type = "json", condition = "success", headers = null
 class Request {
-    constructor(url, param, type = "json", condition = "success", headers = null) {
-        this.url = url
-        this.param = param
+    constructor($obj) {
+        this.url = $obj.url
+        this.param = $obj.param || {}
+        this.type = $obj.type.toLowerCase() || "json"
+        this.headers = $obj.headers || null
+        this.condition = $obj.condition || "success"
+        this.dataStructure = $obj.dataStructure || {
+            code,
+            data,
+            msg
+        }
         this.flag = true
-        this.type = type.toLowerCase()
         this.resData = {}
-        this.headers = headers
-        this.condition = condition
     }
     processParame(type) {
         if (type == 'formdata') {
@@ -35,12 +41,12 @@ class Request {
         }
         axios(postParam).then(res => {
             this.resData = res
-            if (res.data.code == this.condition) {
+            if (res.data[this.dataStructure.code] == this.condition) {
                 this.flag = true
-                success(res.data.data, null)
+                success(res.data[this.dataStructure.data], null)
             } else {
                 if (this.flag) {
-                    err(null, res.data.msg)
+                    err(null, res.data[this.dataStructure.msg])
                     this.flag = false
                     return false;
                 }
@@ -48,7 +54,7 @@ class Request {
         }).catch(error => {
             if (error) throw error
             if (this.resData) {
-                err(null, this.resData.data.msg)
+                err(null, this.resData.data[this.dataStructure.msg])
             } else {
                 err(null, '服务器错误请稍后再试!')
             }
@@ -58,7 +64,7 @@ class Request {
     get(success, err) {
         this.processParame(this.type)
         let postParam = {
-            method: "post",
+            method: "get",
             url: this.url,
             data: this.param != null ? this.param : '',
         }
@@ -89,8 +95,8 @@ class Request {
     }
 }
 // 入口函数
-function init(url, param, type, condition, headers) {
-    return new Request(url, param, type, condition, headers)
+function init($obj) {
+    return new Request($obj)
 }
 
 module.exports = init
