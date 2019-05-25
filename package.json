@@ -1,6 +1,6 @@
 {
   "name": "azrequests",
-  "version": "1.0.36",
+  "version": "1.0.40",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,6 @@
     "cleanLib": "./node_modules/.bin/rimraf lib",
     "bableBuild": "./node_modules/.bin/babel src --out-dir lib",
     "prepublish": "npm run cleanLib && npm run bableBuild"
-
   },
   "homepage": "https://github.com/HappyPot/azrequests",
   "keywords": [

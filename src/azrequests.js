@@ -1,22 +1,25 @@
 let axios = require('axios')
-url, param, type = "json", condition = "success", headers = null
 class Request {
     constructor($obj) {
         this.url = $obj.url
         this.param = $obj.param || {}
-        this.type = $obj.type.toLowerCase() || "json"
+        this.type = $obj.type || "json"
         this.headers = $obj.headers || null
-        this.condition = $obj.condition || "success"
+        if ($obj.condition != undefined) {
+            this.condition = $obj.condition
+        } else {
+            this.condition = "success"
+        }
         this.dataStructure = $obj.dataStructure || {
-            code,
-            data,
-            msg
+            code: "code",
+            data: "data",
+            msg: "msg"
         }
         this.flag = true
         this.resData = {}
     }
     processParame(type) {
-        if (type == 'formdata') {
+        if (type.toLowerCase() == 'formdata') {
             var $param = new FormData()
             for (let key in this.param) {
                 if (Object.prototype.toString.call(this.param[key]) === '[object Object]') {
